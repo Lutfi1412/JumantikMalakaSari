@@ -19,18 +19,11 @@ func main() {
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{
-			"http://localhost:5173",
-			"https://localhost:5173", // ✅ Tambah HTTPS localhost
-			"http://192.168.100.11:5173",
-			"https://192.168.100.11:5173", // ✅ Tambah HTTPS IP
-			"http://192.168.100.11",
-			"https://192.168.100.11", // ✅ Tambah HTTPS IP tanpa port
-		},
+		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
+		AllowCredentials: false,
 	}))
 
 	// login tanpa middleware
