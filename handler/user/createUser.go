@@ -27,7 +27,7 @@ func CreateUser(c *gin.Context) {
 
 	var input model.CreateUser
 	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid input"})
 		return
 	}
 
@@ -97,7 +97,7 @@ func CreateUser(c *gin.Context) {
 		hashingID, id,
 	)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal update"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal update"})
 		return
 	}
 

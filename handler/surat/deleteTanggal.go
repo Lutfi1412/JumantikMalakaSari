@@ -35,7 +35,7 @@ func DeleteTanggal(c *gin.Context) {
 	query := `DELETE FROM tanggal WHERE id = ANY($1)`
 	result, err := config.Pool.Exec(context.Background(), query, input.IDs)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal menghapus laporan"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal menghapus tanggal"})
 		return
 	}
 

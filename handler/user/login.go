@@ -15,7 +15,7 @@ import (
 func LoginUser(c *gin.Context) {
 
 	if c.Request.Method != http.MethodPost {
-		c.JSON(http.StatusMethodNotAllowed, gin.H{"error": "Method not allowed"})
+		c.JSON(http.StatusMethodNotAllowed, gin.H{"message": "Method not allowed"})
 		return
 	}
 	var input model.LoginInput
