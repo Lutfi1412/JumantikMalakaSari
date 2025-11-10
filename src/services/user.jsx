@@ -10,12 +10,12 @@ import axios from "axios";
 // });
 
 const envHost = import.meta.env.VITE_API_HOST; // kalau sudah di-set di .env
-const autoHost = `http://${location.hostname}:8080`; // otomatis pakai IP PC yang diakses oleh HP
-const baseURL =
-  envHost && envHost !== "http://localhost:8080" ? envHost : autoHost;
+// const autoHost = `http://${location.hostname}:8080`; // otomatis pakai IP PC yang diakses oleh HP
+// const baseURL =
+//   envHost && envHost !== "http://localhost:8080" ? envHost : autoHost;
 
 const api = axios.create({
-  baseURL,
+  baseURL: envHost,
   headers: { "Content-Type": "application/json" },
 });
 export async function login(username, password) {

@@ -1,3 +1,5 @@
+
+
 @import "tailwindcss";
 
 /* Base */
@@ -5,7 +7,6 @@
   html, body, #root { height: 100%; }
   body { @apply bg-white text-neutral-900 antialiased; }
 }
-
 /* Komponen custom */
 @layer components {
   /* langsung tulis semua style-nya tanpa @apply btn */
@@ -24,3 +25,4 @@
     overflow: hidden;
   }
 }
+

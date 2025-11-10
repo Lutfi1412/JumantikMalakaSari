@@ -25,6 +25,5 @@ export function RequireRole({ allowedRoles, children }) {
   if (!role) return <Navigate to="/login" replace />;
   if (!allowedRoles.includes(role)) return <Navigate to="/404" replace />;
 
-  // Render children jika ada, kalau tidak pakai Outlet
   return children || <Outlet />;
 }

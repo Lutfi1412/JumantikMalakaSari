@@ -36,16 +36,17 @@ export default function AdminApp({ role }) {
       <Header
         title={`Jumantik | ${role.charAt(0).toUpperCase() + role.slice(1)}`}
       />
+
+      {/* ===== MOBILE ===== */}
       <main className="flex-1 pt-4 pb-20 px-4 sm:px-6 lg:hidden">
         <Outlet />
       </main>
       <BottomNav role={role} />
+
       {/* ===== DESKTOP (sidebar + content) ===== */}
       <div className="hidden lg:flex">
         <aside className="sticky top-0 h-screen w-60 flex-shrink-0 bg-slate-900 text-slate-100 px-4 py-6">
-          <div className="font-semibold text-lg mb-6">
-            {role === "admin" ? "Jumantik | Admin" : "Jumantik | Koordinator"}
-          </div>
+          <div className="text-lg font-semibold mb-6">Menu</div>
 
           <nav className="space-y-2">
             <Item to={`/${role}`} end>
@@ -54,6 +55,7 @@ export default function AdminApp({ role }) {
             <Item to={`/${role}/laporan`}>Laporan</Item>
             {role === "admin" && <Item to={`/${role}/akun`}>Akun</Item>}
           </nav>
+
           <button
             onClick={handleLogout}
             className="mt-6 w-full rounded-lg bg-white/10 hover:bg-white/15 px-3 py-2 text-sm"
