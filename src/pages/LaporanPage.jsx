@@ -141,57 +141,60 @@ export default function LaporanPage() {
       )}
 
       {photo && (
-        <div className="px-5 space-y-5">
-          <div className="relative">
-            <img
-              src={photo.preview}
-              alt="preview"
-              className="rounded-2xl w-full object-cover"
-            />
-            <button
-              onClick={retakePhoto}
-              className="absolute top-2 right-2 bg-white/90 text-slate-700 rounded-full px-3 py-1.5 text-sm shadow-lg font-medium active:scale-95 transition-transform"
+        <div>
+          <Header title={`Jumantik | Koordinator`} />
+          <div className="px-5 space-y-5">
+            <div className="relative">
+              <img
+                src={photo.preview}
+                alt="preview"
+                className="rounded-2xl w-full object-cover"
+              />
+              <button
+                onClick={retakePhoto}
+                className="absolute top-2 right-2 bg-white/90 text-slate-700 rounded-full px-3 py-1.5 text-sm shadow-lg font-medium active:scale-95 transition-transform"
+              >
+                🔄 Ulangi Foto
+              </button>
+            </div>
+
+            <select
+              value={selectedRT}
+              onChange={(e) => setSelectedRT(e.target.value)}
+              className="w-full rounded-2xl border-2 border-neutral-300 px-4 py-3 outline-none focus:border-blue-600 bg-white"
             >
-              🔄 Ulangi Foto
+              <option value="">Pilih RT</option>
+              {Array.from({ length: rtCount }, (_, i) => i + 1).map((num) => (
+                <option key={num} value={num}>
+                  RT {num}
+                </option>
+              ))}
+            </select>
+
+            <textarea
+              rows="4"
+              value={alamat}
+              onChange={(e) => setAlamat(e.target.value)}
+              placeholder="Detail Alamat"
+              className="w-full rounded-2xl shadow-inner px-4 py-3 outline-none border-2 border-neutral-300 focus:border-blue-600"
+            />
+
+            {gpsAccuracy && (
+              <div className="text-sm text-slate-600 text-center">
+                📍 Akurasi GPS: {gpsAccuracy.toFixed(1)} meter
+              </div>
+            )}
+
+            <button
+              onClick={submit}
+              disabled={loading}
+              className={`w-full bg-blue-600 text-white rounded-2xl py-3 font-semibold text-lg shadow-lg transition-transform active:scale-95 ${
+                loading ? "opacity-60" : ""
+              }`}
+            >
+              {loading ? "Mengirim..." : "✉️ Kirim Laporan"}
             </button>
           </div>
-
-          <select
-            value={selectedRT}
-            onChange={(e) => setSelectedRT(e.target.value)}
-            className="w-full rounded-2xl border-2 border-neutral-300 px-4 py-3 outline-none focus:border-blue-600 bg-white"
-          >
-            <option value="">Pilih RT</option>
-            {Array.from({ length: rtCount }, (_, i) => i + 1).map((num) => (
-              <option key={num} value={num}>
-                RT {num}
-              </option>
-            ))}
-          </select>
-
-          <textarea
-            rows="4"
-            value={alamat}
-            onChange={(e) => setAlamat(e.target.value)}
-            placeholder="Detail Alamat"
-            className="w-full rounded-2xl shadow-inner px-4 py-3 outline-none border-2 border-neutral-300 focus:border-blue-600"
-          />
-
-          {gpsAccuracy && (
-            <div className="text-sm text-slate-600 text-center">
-              📍 Akurasi GPS: {gpsAccuracy.toFixed(1)} meter
-            </div>
-          )}
-
-          <button
-            onClick={submit}
-            disabled={loading}
-            className={`w-full bg-blue-600 text-white rounded-2xl py-3 font-semibold text-lg shadow-lg transition-transform active:scale-95 ${
-              loading ? "opacity-60" : ""
-            }`}
-          >
-            {loading ? "Mengirim..." : "✉️ Kirim Laporan"}
-          </button>
         </div>
       )}
     </div>

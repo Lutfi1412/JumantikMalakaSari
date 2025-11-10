@@ -80,6 +80,15 @@ export default function App() {
           }
         ></Route>
 
+        <Route
+          path="/petugas/"
+          element={
+            <RequireRole allowedRoles={["petugas"]}>
+              <LaporanPage />
+            </RequireRole>
+          }
+        ></Route>
+
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
