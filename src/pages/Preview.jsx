@@ -345,13 +345,13 @@ export default function Preview() {
               }}
             >
               <p>Mengetahui</p>
-              <p>Ketua RW ......</p>
+              <p>Ketua RW {laporan.rw}</p>
               <img
                 src="/image/ttd.png"
                 alt="Tanda Tangan"
                 style={{ height: "20mm", objectFit: "contain" }}
               />
-              <p>(Lutfi Rrobbani)</p>
+              <p>({laporan.namarw})</p>
             </div>
 
             <div
@@ -375,7 +375,7 @@ export default function Preview() {
                 alt="Tanda Tangan"
                 style={{ height: "20mm", objectFit: "contain" }}
               />
-              <p>(Lutfi Rrobbani)</p>
+              <p>({laporan.namakoor})</p>
             </div>
           </div>
         </div>

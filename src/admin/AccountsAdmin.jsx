@@ -109,6 +109,7 @@ export default function AccountsAdmin() {
         const role = editing.role;
         let rt = 0,
           rw = 0;
+        let nama_rw = "";
 
         if (role === "koordinator" || role === "petugas") {
           if (!editing.rt || !editing.rw)
@@ -117,7 +118,13 @@ export default function AccountsAdmin() {
           rw = parseInt(editing.rw);
         }
 
-        await createUser(nama, username, password, role, rt, rw);
+        if (role === "koordinator") {
+          if (!editing.nama_rw)
+            return MySwal.fire("Oops...", "Nama RW harus diisi!", "warning");
+          nama_rw = editing.nama_rw.trim();
+        }
+
+        await createUser(nama, username, password, role, rt, rw, nama_rw);
         MySwal.fire("Berhasil!", "User berhasil ditambahkan!", "success");
       } else {
         // === UPDATE USER ===
@@ -213,6 +220,7 @@ export default function AccountsAdmin() {
                   <tr>
                     <Th className="w-16 sm:w-20">No</Th>
                     <Th>Nama</Th>
+                    <Th>Nama RW</Th>
                     <Th className="w-20 sm:w-28">RT</Th>
                     <Th className="w-20 sm:w-28">RW</Th>
                     <Th className="w-32 sm:w-40">Role</Th>
@@ -226,9 +234,21 @@ export default function AccountsAdmin() {
                         <Td className="text-slate-500 whitespace-nowrap">
                           {i + 1}
                         </Td>
-                        <Td className="font-medium min-w-[180px]">{r.nama}</Td>
-                        <Td className="whitespace-nowrap">{r.rt ?? "-"}</Td>
-                        <Td className="whitespace-nowrap">{r.rw ?? "-"}</Td>
+                        <Td className="font-medium min-w-[180px]">
+                          {r.nama ?? "-"}
+                        </Td>
+                        <Td className="font-medium min-w-[180px]">
+                          {r.nama_rw && r.nama_rw.trim() !== ""
+                            ? r.nama_rw
+                            : "-"}
+                        </Td>
+                        <Td className="whitespace-nowrap">
+                          {r.rt && r.rt !== 0 ? r.rt : "-"}
+                        </Td>
+                        <Td className="whitespace-nowrap">
+                          {r.rw && r.rw !== 0 ? r.rw : "-"}
+                        </Td>
+
                         <Td>
                           <span
                             className={`inline-flex items-center rounded-full px-3 py-1 text-xs sm:text-sm ${
@@ -298,6 +318,7 @@ export default function AccountsAdmin() {
                     placeholder="Masukan nama…"
                   />
                 </div>
+
                 <div>
                   <label className="block text-sm mb-1">Role</label>
                   <select
@@ -312,31 +333,22 @@ export default function AccountsAdmin() {
                     <option>petugas</option>
                   </select>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                {/* ✅ Tambahan khusus untuk role koordinator */}
+                {editing.role === "koordinator" && (
                   <div>
-                    <label className="block text-sm mb-1">Username</label>
+                    <label className="block text-sm mb-1">Nama RW</label>
                     <input
-                      value={editing.username}
+                      value={editing.nama_rw || ""}
                       onChange={(e) =>
-                        setEditing({ ...editing, username: e.target.value })
+                        setEditing({ ...editing, nama_rw: e.target.value })
                       }
                       className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-sky-500"
-                      placeholder="Masukan username…"
+                      placeholder="Masukan nama RW…"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm mb-1">Password</label>
-                    <input
-                      type="password"
-                      value={editing.password}
-                      onChange={(e) =>
-                        setEditing({ ...editing, password: e.target.value })
-                      }
-                      className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-sky-500"
-                      placeholder="Masukan password…"
-                    />
-                  </div>
-                </div>
+                )}
+
                 {(editing.role === "koordinator" ||
                   editing.role === "petugas") && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -366,6 +378,32 @@ export default function AccountsAdmin() {
                     </div>
                   </div>
                 )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm mb-1">Username</label>
+                    <input
+                      value={editing.username}
+                      onChange={(e) =>
+                        setEditing({ ...editing, username: e.target.value })
+                      }
+                      className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-sky-500"
+                      placeholder="Masukan username…"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm mb-1">Password</label>
+                    <input
+                      type="password"
+                      value={editing.password}
+                      onChange={(e) =>
+                        setEditing({ ...editing, password: e.target.value })
+                      }
+                      className="w-full rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-sky-500"
+                      placeholder="Masukan password…"
+                    />
+                  </div>
+                </div>
               </>
             ) : (
               <>

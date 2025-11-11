@@ -40,12 +40,20 @@ export async function checkToken(token) {
   }
 }
 
-export async function createUser(nama, username, password, role, rt, rw) {
+export async function createUser(
+  nama,
+  username,
+  password,
+  role,
+  rt,
+  rw,
+  nama_rw
+) {
   const token = localStorage.getItem("token");
   try {
     const res = await api.post(
       "/auth/create-user",
-      { nama, username, password, role, rt, rw },
+      { nama, username, password, role, rt, rw, nama_rw },
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return res.data;

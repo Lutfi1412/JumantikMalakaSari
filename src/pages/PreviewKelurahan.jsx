@@ -348,13 +348,16 @@ export default function PreviewKelurahan() {
               }}
             >
               <p>Mengetahui</p>
-              <p>Ketua RW ......</p>
+              <p>Plh. LURAH KELURAHAN MALAKA SARI,</p>
               <img
                 src="/image/ttd.png"
                 alt="Tanda Tangan"
                 style={{ height: "20mm", objectFit: "contain" }}
               />
-              <p>(Lutfi Rrobbani)</p>
+              <div style={{ lineHeight: "1", marginTop: "-2px" }}>
+                <p style={{ margin: 0 }}>RASIKIN, S.IP, M.SI</p>
+                <p style={{ margin: 2 }}>196904101996031004</p>
+              </div>
             </div>
 
             <div
@@ -372,13 +375,16 @@ export default function PreviewKelurahan() {
                   year: "numeric",
                 })}
               </p>
-              <p>KOORDINATOR JUMANTIK</p>
+              <p>KASI KESRA KEL. MALAKA SARI</p>
               <img
                 src="/image/ttd.png"
                 alt="Tanda Tangan"
                 style={{ height: "20mm", objectFit: "contain" }}
               />
-              <p>(Lutfi Rrobbani)</p>
+              <div style={{ lineHeight: "1", marginTop: "-2px" }}>
+                <p style={{ margin: 0 }}>NINING SETIANINGSIH, SH</p>
+                <p style={{ margin: 2 }}>NIP 196809171997032005</p>
+              </div>
             </div>
           </div>
         </div>
