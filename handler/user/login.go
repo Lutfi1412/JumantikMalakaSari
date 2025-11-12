@@ -49,8 +49,5 @@ func LoginUser(c *gin.Context) {
 		c.JSON(http.StatusUnsupportedMediaType, gin.H{"message": "Header tidak valid, gunakan application/json"})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Login berhasil",
-		"token":   token,
-	})
+	c.JSON(http.StatusOK, gin.H{"message": token})
 }
