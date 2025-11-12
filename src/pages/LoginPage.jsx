@@ -20,8 +20,8 @@ export default function LoginPage() {
     try {
       const data = await login(username, password);
 
-      if (data.token) {
-        localStorage.setItem("token", data.token);
+      if (data.message) {
+        localStorage.setItem("token", data.message);
 
         const token = localStorage.getItem("token");
         const decoded = jwt_decode(token);
