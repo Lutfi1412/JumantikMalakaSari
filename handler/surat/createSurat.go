@@ -20,7 +20,7 @@ func CreateSurat(c *gin.Context) {
 	}
 	var surat model.CreateSurat
 	if err := c.ShouldBindJSON(&surat); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Format data tidak valid"})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Format data tidak valid"})
 		return
 	}
 
@@ -74,13 +74,13 @@ func CreateSurat(c *gin.Context) {
 	// 🔹 Marshal JSON
 	jumlahJSON, err := json.Marshal(surat.Jumlah)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal mengonversi data jumlah ke format JSON"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal mengonversi data jumlah ke format JSON"})
 		return
 	}
 
 	jenisTatananJSON, err := json.Marshal(surat.JenisTatanan)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal mengonversi data jenis tatanan ke format JSON"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal mengonversi data jenis tatanan ke format JSON"})
 		return
 	}
 
@@ -101,7 +101,7 @@ func CreateSurat(c *gin.Context) {
 		string(jenisTatananJSON),
 	)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal menyimpan data surat ke database"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal menyimpan data surat ke database"})
 		return
 	}
 

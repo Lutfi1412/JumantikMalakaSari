@@ -1,7 +1,6 @@
 package user
 
 import (
-	"context"
 	"errors"
 	"net/http"
 	"strconv"
@@ -34,13 +33,6 @@ func CreateUser(c *gin.Context) {
 	var input model.CreateUser
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Input data tidak valid"})
-		return
-	}
-	if strings.TrimSpace(input.Username) == "" ||
-		strings.TrimSpace(input.Password) == "" ||
-		strings.TrimSpace(input.Nama) == "" ||
-		strings.TrimSpace(input.Role) == "" {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Field wajib tidak boleh kosong"})
 		return
 	}
 
@@ -85,7 +77,7 @@ func CreateUser(c *gin.Context) {
 	var id int
 	const qInsert = `
 		INSERT INTO users (nama, rt, rw, role, username, password, nama_rw)
-		VALUES ($1, $2, $3, $4, $5, $6, $7)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
 		RETURNING id;
 	`
 	err = config.Pool.QueryRow(

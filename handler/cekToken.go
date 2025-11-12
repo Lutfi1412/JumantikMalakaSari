@@ -22,7 +22,6 @@ func CheckToken(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Token valid",
-		"role":    token.Role,
+		"message": token.Role,
 	})
 }

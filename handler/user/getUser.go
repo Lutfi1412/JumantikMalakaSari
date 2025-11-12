@@ -19,7 +19,13 @@ func GetUser(c *gin.Context) {
 	}
 
 	query := `
-		SELECT hashing_id, nama, rw, role, rt
+		SELECT 
+			hashing_id, 
+			nama, 
+			rw, 
+			role, 
+			rt, 
+			COALESCE(nama_rw, '') AS nama_rw
 		FROM users
 		ORDER BY 
 			CASE 
@@ -41,9 +47,8 @@ func GetUser(c *gin.Context) {
 
 	for rows.Next() {
 		var user model.TableUser
-		err := rows.Scan(&user.Id, &user.Nama, &user.Rw, &user.Role, &user.Rt)
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"message": "Terjadi kesalahan saat membaca data pengguna"})
+		if err := rows.Scan(&user.Id, &user.Nama, &user.Rw, &user.Role, &user.Rt, &user.NamaRW); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"message": "Error scan data pengguna"})
 			return
 		}
 
