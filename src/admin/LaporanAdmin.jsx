@@ -307,14 +307,15 @@ export default function LaporanAdmin({ role }) {
                       >
                         <FaMapMarkerAlt />
                       </button>
-
-                      <button
-                        onClick={() => openForEdit(r)}
-                        title="Edit"
-                        className="rounded-lg px-2 py-1 text-sky-600 hover:bg-sky-50"
-                      >
-                        <FaEdit />
-                      </button>
+                      {role === "koordinator" && (
+                        <button
+                          onClick={() => openForEdit(r)}
+                          title="Edit"
+                          className="rounded-lg px-2 py-1 text-sky-600 hover:bg-sky-50"
+                        >
+                          <FaEdit />
+                        </button>
+                      )}
                     </div>
                   </Td>
                 </tr>
