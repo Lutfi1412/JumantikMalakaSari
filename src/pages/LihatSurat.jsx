@@ -43,7 +43,7 @@ export default function LihatSurat({ role }) {
     window.location.href = `/preview.html?id=${row.id}`;
   };
 
-  if (loading) return <LoadingOverlay />;
+  if (loading) return <LoadingOverlay show={loading} />;
 
   return (
     <div>
