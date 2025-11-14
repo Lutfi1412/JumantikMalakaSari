@@ -1,0 +1,4 @@
+text,intent
+Bagaimana warga tahu jadwal pemeriksaan Jumantik?,jadwal_kunjungan
+Apa gunanya laporan jentik dari warga?,lapor_jentik
+Apakah fogging cukup buat mencegah DBD?,prosedur_fogging

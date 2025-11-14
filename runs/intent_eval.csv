@@ -1,0 +1,4 @@
+text,gold,pred,conf
+Bagaimana warga tahu jadwal pemeriksaan Jumantik?,jadwal_kunjungan,jadwal_kunjungan,0.46491193771362305
+Apa gunanya laporan jentik dari warga?,lapor_jentik,lapor_jentik,0.43451616168022156
+Apakah fogging cukup buat mencegah DBD?,prosedur_fogging,jadwal_kunjungan,0.35690852999687195
