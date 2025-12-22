@@ -68,6 +68,7 @@ export async function deleteLaporan(ids) {
 }
 
 export async function createLaporan(
+  tanggal,
   rt,
   detail_alamat,
   gambar,
@@ -78,7 +79,7 @@ export async function createLaporan(
   try {
     const res = await api.post(
       "/auth/create-laporan",
-      { rt, detail_alamat, gambar, latitude, longitude },
+      { tanggal, rt, detail_alamat, gambar, latitude, longitude },
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return res.data;

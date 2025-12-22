@@ -45,7 +45,6 @@ export default function App() {
           <Route index element={<Home role="koordinator" />} />
           <Route path="laporan" element={<LaporanAdmin role="koordinator" />} />
           <Route path="buat-laporan" element={<LaporanPage role="Petugas" />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
         </Route>
 
         <Route
@@ -90,7 +89,6 @@ export default function App() {
         ></Route>
 
         <Route path="/404" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </BrowserRouter>
   );

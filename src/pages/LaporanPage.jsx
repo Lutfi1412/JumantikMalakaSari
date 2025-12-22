@@ -12,6 +12,7 @@ export default function LaporanPage({ role }) {
   const [photo, setPhoto] = useState(null);
   const [rtCount, setRtCount] = useState(0);
   const [selectedRT, setSelectedRT] = useState("");
+  const [tanggal, setTanggal] = useState("");
   const fileRef = useRef(null);
   const isProcessing = useRef(false);
   const [loading, setLoading] = useState();
@@ -32,6 +33,8 @@ export default function LaporanPage({ role }) {
       }
     };
     fetchRT();
+    const today = new Date().toISOString().split("T")[0]; // 2006-01-02
+    setTanggal(today);
   }, []);
 
   const onFile = (e) => {
@@ -80,6 +83,7 @@ export default function LaporanPage({ role }) {
 
       // ✅ Kirim ke backend
       await createLaporan(
+        tanggal,
         Number(selectedRT),
         alamat,
         base64Image,
@@ -175,6 +179,13 @@ export default function LaporanPage({ role }) {
                 🔄 Ulangi Foto
               </button>
             </div>
+
+            <input
+              type="date"
+              value={tanggal}
+              onChange={(e) => setTanggal(e.target.value)}
+              className="w-full rounded-2xl border-2 border-neutral-300 px-4 py-3 outline-none focus:border-blue-600 bg-white"
+            />
 
             <select
               value={selectedRT}
