@@ -3,7 +3,6 @@ package laporan
 import (
 	"context"
 	"net/http"
-	"time"
 
 	"api-jumantik/config"
 	"api-jumantik/model"
@@ -21,8 +20,8 @@ func CreateLaporan(c *gin.Context) {
 	}
 
 	// Ambil tanggal saat ini di zona waktu Jakarta
-	loc, _ := time.LoadLocation("Asia/Jakarta")
-	now := time.Now().In(loc)
+	// loc, _ := time.LoadLocation("Asia/Jakarta")
+	// now := time.Now().In(loc)
 
 	query := `
 	INSERT INTO laporan (
@@ -31,7 +30,8 @@ func CreateLaporan(c *gin.Context) {
 	`
 
 	_, err := config.Pool.Exec(context.Background(), query,
-		now.Format("2006-01-02"),
+		// now.Format("2006-01-02"),
+		input.Tanggal,
 		input.Rt,
 		input.DetailAlamat,
 		hashingID,

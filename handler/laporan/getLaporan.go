@@ -57,7 +57,7 @@ func GetLaporan(c *gin.Context) {
 			FROM laporan l
 			JOIN users u ON l.pelapor = u.hashing_id
 			WHERE u.rw = $1
-			ORDER BY l.id desc
+			ORDER BY l.tanggal desc
 			OFFSET $2 LIMIT $3
 		`
 		rowsData, err = config.Pool.Query(context.Background(), query, rwKoordinator, start, end)
@@ -69,7 +69,7 @@ func GetLaporan(c *gin.Context) {
 			      l.latitude, l.longitude
 			FROM laporan l
 			JOIN users u ON l.pelapor = u.hashing_id
-			ORDER BY l.id desc
+			ORDER BY l.tanggal desc
 			OFFSET $1 LIMIT $2
 		`
 		rowsData, err = config.Pool.Query(context.Background(), query, start, end)

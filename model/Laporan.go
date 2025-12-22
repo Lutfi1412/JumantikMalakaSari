@@ -1,6 +1,7 @@
 package model
 
 type CreateLaporan struct {
+	Tanggal      string `json:"tanggal" binding:"required"`
 	Rt           int32  `json:"rt" binding:"required"`
 	DetailAlamat string `json:"detail_alamat" binding:"required"`
 	Gambar       string `json:"gambar" binding:"required"`
