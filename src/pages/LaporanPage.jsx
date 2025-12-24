@@ -164,7 +164,6 @@ export default function LaporanPage({ role }) {
 
       {photo && (
         <div>
-          <Header title={`Jumantik | Koordinator`} />
           <div className="px-5 space-y-5">
             <div className="relative">
               <img
