@@ -289,31 +289,30 @@ export default function LaporanAdmin({ role }) {
                       onClick={() => handleGambar(r)}
                       className="text-blue-600 hover:underline"
                     >
-                      Lihat
+                      Lihat Gambar
                     </button>
                   </Td>
 
                   <Td className="text-center">
-                    <div className="inline-flex items-center gap-2">
+                    <div className="inline-flex items-center gap-2 flex-wrap justify-center">
                       <button
-                        title="Lihat lokasi"
                         onClick={() =>
                           window.open(
                             `https://www.google.com/maps?q=${r.latitude},${r.longitude}`,
                             "_blank"
                           )
                         }
-                        className="rounded-lg px-2 py-1 text-rose-600 hover:bg-rose-50"
+                        className="px-3 py-1.5 text-sm font-medium rounded-md border border-rose-300 text-rose-700 bg-white hover:bg-rose-50 transition"
                       >
-                        <FaMapMarkerAlt />
+                        Lokasi
                       </button>
+
                       {role === "koordinator" && (
                         <button
                           onClick={() => openForEdit(r)}
-                          title="Edit"
-                          className="rounded-lg px-2 py-1 text-sky-600 hover:bg-sky-50"
+                          className="px-3 py-1.5 text-sm font-medium rounded-md border border-sky-300 text-sky-700 bg-white hover:bg-sky-50 transition"
                         >
-                          <FaEdit />
+                          Edit
                         </button>
                       )}
                     </div>

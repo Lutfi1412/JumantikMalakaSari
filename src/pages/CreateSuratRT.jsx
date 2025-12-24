@@ -527,11 +527,10 @@ export default function CreateSuratRT() {
                       </td>
                       <td className="p-2 border border-slate-300 text-center">
                         <button
-                          title="Edit"
                           onClick={() => openEdit(r)}
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-indigo-50 transition"
+                          className="px-3 py-1.5 text-sm font-medium rounded-md border border-slate-300 text-indigo-700 bg-white hover:bg-indigo-50 transition"
                         >
-                          <FaEdit size={14} />
+                          Edit
                         </button>
                       </td>
                     </tr>

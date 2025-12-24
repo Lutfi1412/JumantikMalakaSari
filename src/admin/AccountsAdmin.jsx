@@ -270,20 +270,19 @@ export default function AccountsAdmin() {
                           </span>
                         </Td>
                         <Td className="text-center">
-                          <div className="flex justify-center gap-2">
+                          <div className="flex justify-center gap-2 flex-wrap">
                             <button
                               onClick={() => openEdit(r)}
-                              title="Edit"
-                              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-sky-200 text-sky-600 hover:bg-sky-50"
+                              className="px-3 py-1.5 text-sm font-medium rounded-md border border-sky-300 text-sky-700 bg-white hover:bg-sky-50 transition"
                             >
-                              <FaEdit size={16} />
+                              Edit
                             </button>
+
                             <button
                               onClick={() => handleDelete(r)}
-                              title="Delete"
-                              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-sky-200 text-red-600 hover:bg-red-50"
+                              className="px-3 py-1.5 text-sm font-medium rounded-md border border-red-300 text-red-700 bg-white hover:bg-red-50 transition"
                             >
-                              <FaTrash size={16} />
+                              Hapus
                             </button>
                           </div>
                         </Td>

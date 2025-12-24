@@ -262,34 +262,31 @@ export default function Home({ role }) {
                 </td>
                 <td className="p-3 text-left">{i + 1}</td>
                 <td className="p-3 text-left">{r.tgl}</td>
-                <td className="p-3 w-[120px]">
-                  <div className="flex justify-end gap-2 w-full">
+                <td className="p-3 w-[260px]">
+                  <div className="flex justify-end gap-2 w-full flex-wrap">
                     <button
-                      title="Update"
                       onClick={() => openDetail(r)}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-slate-50"
+                      className="px-4 py-2 text-sm font-medium rounded-lg border border-slate-300 text-indigo-700 bg-white hover:bg-indigo-50 transition"
                     >
-                      <FaRegEdit size={18} />
+                      Edit Tanggal
                     </button>
 
                     {role === "admin" && (
                       <button
-                        title="Preview"
                         onClick={() => PreviewKelurahan(r)}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-sky-600 hover:bg-slate-50"
+                        className="px-4 py-2 text-sm font-medium rounded-lg border border-slate-300 text-sky-700 bg-white hover:bg-sky-50 transition"
                       >
-                        <VscOpenPreview size={18} />
+                        Lihat Laporan Kelurahan
                       </button>
                     )}
 
                     <button
-                      title="Detail"
                       onClick={() =>
                         role === "admin" ? PageDetailAdmin(r) : PageDetail(r)
                       }
-                      className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-indigo-600 hover:bg-slate-50`}
+                      className="px-4 py-2 text-sm font-medium rounded-lg border border-slate-300 text-emerald-700 bg-white hover:bg-emerald-50 transition"
                     >
-                      <TbListDetails size={18} />
+                      Detail
                     </button>
                   </div>
                 </td>
