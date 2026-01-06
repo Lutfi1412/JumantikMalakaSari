@@ -19,6 +19,33 @@ const pad = (n) => String(n).padStart(2, "0");
 const fmt = (d) =>
   `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 
+// Function baru untuk format tanggal ke DD/MM/YYYY
+const formatTanggalIndonesia = (dateString) => {
+  if (!dateString) return "";
+  
+  // Parse tanggal dari format YYYY-MM-DD
+  const [year, month, day] = dateString.split("-");
+  
+  // Return format DD/MM/YYYY
+  return `${day}/${month}/${year}`;
+};
+
+// Function untuk convert kembali ke format YYYY-MM-DD (jika diperlukan)
+const formatTanggalDatabase = (dateString) => {
+  if (!dateString) return "";
+  
+  // Jika sudah format YYYY-MM-DD, return as is
+  if (dateString.includes("-") && dateString.split("-")[0].length === 4) {
+    return dateString;
+  }
+  
+  // Parse tanggal dari format DD/MM/YYYY
+  const [day, month, year] = dateString.split("/");
+  
+  // Return format YYYY-MM-DD
+  return `${year}-${pad(month)}-${pad(day)}`;
+};
+
 export default function Home({ role }) {
   const [rows, setRows] = useState([]);
   const [checked, setChecked] = useState(new Set());
@@ -209,7 +236,7 @@ export default function Home({ role }) {
             onChange={handleDateChange}
             isClearable={true}
             placeholderText="Pilih rentang tanggal"
-            dateFormat="yyyy-MM-dd"
+            dateFormat="dd/MM/yyyy"
             className="rounded-xl border border-slate-300 px-3 py-2 w-full sm:w-[200px]"
           />
         </div>
@@ -261,7 +288,7 @@ export default function Home({ role }) {
                   />
                 </td>
                 <td className="p-3 text-left">{i + 1}</td>
-                <td className="p-3 text-left">{r.tgl}</td>
+                <td className="p-3 text-left">{formatTanggalIndonesia(r.tgl)}</td>
                 <td className="p-3 w-[260px]">
                   <div className="flex justify-end gap-2 w-full flex-wrap">
                     <button
