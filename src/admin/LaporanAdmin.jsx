@@ -14,6 +14,46 @@ import LoadingOverlay from "../components/LoadingOverlay";
 import "react-datepicker/dist/react-datepicker.css";
 import { set } from "date-fns";
 
+// Function untuk format tanggal ke DD/MM/YYYY
+const formatTanggalIndonesia = (dateString) => {
+  if (!dateString) return "";
+  
+  // Jika input adalah object Date
+  if (dateString instanceof Date) {
+    const day = String(dateString.getDate()).padStart(2, "0");
+    const month = String(dateString.getMonth() + 1).padStart(2, "0");
+    const year = dateString.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+  
+  // Jika sudah format DD/MM/YYYY, return as is
+  if (dateString.includes("/") && dateString.split("/")[2]?.length === 4) {
+    return dateString;
+  }
+  
+  // Parse tanggal dari format YYYY-MM-DD
+  const [year, month, day] = dateString.split("-");
+  
+  // Return format DD/MM/YYYY
+  return `${day}/${month}/${year}`;
+};
+
+// Function untuk convert kembali ke format YYYY-MM-DD
+const formatTanggalDatabase = (dateString) => {
+  if (!dateString) return "";
+  
+  // Jika sudah format YYYY-MM-DD, return as is
+  if (dateString.includes("-") && dateString.split("-")[0].length === 4) {
+    return dateString;
+  }
+  
+  // Parse tanggal dari format DD/MM/YYYY
+  const [day, month, year] = dateString.split("/");
+  
+  // Return format YYYY-MM-DD
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+};
+
 export default function LaporanAdmin({ role }) {
   const [rows, setRows] = useState([]);
   const [query, setQuery] = useState("");
@@ -64,6 +104,7 @@ export default function LaporanAdmin({ role }) {
       setLoading(false);
     }
   }
+  
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
 
@@ -214,7 +255,7 @@ export default function LaporanAdmin({ role }) {
                 onChange={handleDateChange}
                 isClearable={true}
                 placeholderText="Pilih rentang tanggal"
-                dateFormat="yyyy-MM-dd"
+                dateFormat="dd/MM/yyyy"
                 className="rounded-xl border border-slate-300 px-3 py-2 w-[160px] sm:w-[200px]"
               />
             </div>
@@ -277,7 +318,7 @@ export default function LaporanAdmin({ role }) {
                     />
                   </Td>
                   <Td>{i + 1}</Td>
-                  <Td>{r.tanggal}</Td>
+                  <Td>{formatTanggalIndonesia(r.tanggal)}</Td>
                   <Td>{r.rt}</Td>
                   <Td>{r.rw}</Td>
                   <Td className="min-w-[220px]">
