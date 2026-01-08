@@ -25,11 +25,12 @@ func LoginUser(c *gin.Context) {
 	}
 
 	var hashedPassword, role, id string
+	var rw int
 
 	usernameHash := util.HashUsername(input.Username)
 
-	query := `SELECT hashing_id, password, role FROM users WHERE username = $1`
-	err := config.Pool.QueryRow(context.Background(), query, usernameHash).Scan(&id, &hashedPassword, &role)
+	query := `SELECT hashing_id, password, role, rw FROM users WHERE username = $1`
+	err := config.Pool.QueryRow(context.Background(), query, usernameHash).Scan(&id, &hashedPassword, &role, &rw)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"message": "Username atau password salah"})
 		return
@@ -40,7 +41,7 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	token, err := util.GenerateToken(id, role)
+	token, err := util.GenerateToken(id, role, rw)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "Gagal membuat token autentikasi"})
 		return
