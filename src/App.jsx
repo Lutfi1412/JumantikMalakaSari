@@ -14,7 +14,7 @@ import ChatPage from "./pages/ChatPage";
 import LaporanPage from "./pages/LaporanPage";
 import Preview from "./pages/Preview";
 import ProfilePage from "./pages/ProfilePage";
-import "./styles/index.css";
+
 import AdminApp from "./admin/AdminApp";
 
 import AccountsAdmin from "./admin/AccountsAdmin";
@@ -24,6 +24,8 @@ import LaporanAdmin from "./admin/LaporanAdmin";
 import { RequireRole } from "./auth/validateRole";
 import { HomeRedirect } from "./auth/homeRedirect";
 import NotFound from "./pages/NotFound";
+import LandingPage from "./pages/LandingPage";
+import "./styles/index.css";
 
 // src/App.js
 export default function App() {
@@ -33,6 +35,8 @@ export default function App() {
         {/* Route default */}
 
         <Route path="/" element={<HomeRedirect />} />
+        <Route path="/home" element={<LandingPage />} />
+
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/koordinator/*"
@@ -62,7 +66,7 @@ export default function App() {
         </Route>
 
         <Route
-          path="/koordinator/buat-surat/:id"
+          path="/koordinator/buat-surat/:id/:tgl"
           element={
             <RequireRole allowedRoles={["koordinator"]}>
               <CreateSuratRT role="koordinator" />

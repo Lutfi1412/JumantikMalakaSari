@@ -26,7 +26,7 @@ export default function AdminApp({ role }) {
           showConfirmButton: false,
           timer: 1200,
         });
-        navigate("/login", { replace: true });
+        navigate("/home", { replace: true });
       }
     });
   };

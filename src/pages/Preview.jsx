@@ -88,7 +88,7 @@ export default function Preview() {
       </div>
     );
 
-  if (!role) return <Navigate to="/login" replace />;
+  if (!role) return <Navigate to="/home" replace />;
   if (role !== "admin") return <Navigate to="/404" replace />;
   if (!laporan) return <div>Gagal memuat data</div>;
 

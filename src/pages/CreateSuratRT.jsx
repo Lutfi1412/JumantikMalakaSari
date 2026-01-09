@@ -12,7 +12,7 @@ import { getRT } from "../services/laporan";
 import Swal from "sweetalert2";
 import SummaryCards from "../components/Card";
 import LoadingOverlay from "../components/LoadingOverlay";
-
+import jwt_decode from "jwt-decode";
 export default function CreateSuratRT() {
   const [rows, setRows] = useState([]);
   const [checked, setChecked] = useState(new Set());
@@ -25,9 +25,12 @@ export default function CreateSuratRT() {
   const [isEdit, setIsEdit] = useState(false);
   const [editId, setEditId] = useState(null);
   const [total, setTotal] = useState(null);
-  const { id } = useParams(); // ambil dari /:id
+  const { id, tgl } = useParams();
+  const tglDecoded = decodeURIComponent(tgl);
   const location = useLocation();
   const tanggal = location.state;
+  const token = localStorage.getItem("token");
+  const decoded = jwt_decode(token);
   const [detailRow, setDetailRow] = useState({
     rt: "",
     jumlah: {
@@ -57,7 +60,7 @@ export default function CreateSuratRT() {
     setLoading(true);
     try {
       const res = await getSuratRW(Number(tanggal_id)); // pastikan integer
-      console.log("DATA API:", res);
+      // console.log("DATA API:", res);
 
       // Backend balikin data: { data: [...], rw: 4, tanggal: "...", total: {...} }
       setRows(res.data || []);
@@ -265,11 +268,11 @@ export default function CreateSuratRT() {
   return (
     <div>
       <Header />
-
       <div className="p-6 max-w-[1600px] mx-auto">
-        <h1 className="text-2xl font-bold mb-6 text-slate-800">
-          Data Jumantik Setiap RT
-        </h1>
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6 text-slate-800">
+          Data Jumantik Setiap RT | Tanggal {tglDecoded} | Koordinator RW{" "}
+          {decoded.rw}
+        </h3>
 
         <div className="space-y-6">
           {total && <SummaryCards total={total} />}

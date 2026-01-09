@@ -10,7 +10,7 @@ export function HomeRedirect() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      setRedirect("/login");
+      setRedirect("/home");
       setLoading(false);
       return;
     }
@@ -27,7 +27,7 @@ export function HomeRedirect() {
           setRedirect("/404");
         }
       })
-      .catch(() => setRedirect("/login"))
+      .catch(() => setRedirect("/home"))
       .finally(() => setLoading(false));
   }, []);
 

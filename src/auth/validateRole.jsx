@@ -21,7 +21,7 @@ export function RequireRole({ allowedRoles, children }) {
   }, []);
 
   if (loading) return <div></div>;
-  if (!role) return <Navigate to="/login" replace />;
+  if (!role) return <Navigate to="/home" replace />;
   if (!allowedRoles.includes(role)) return <Navigate to="/404" replace />;
 
   return children || <Outlet />;

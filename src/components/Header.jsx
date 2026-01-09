@@ -28,7 +28,7 @@ export default function Header({
           showConfirmButton: false,
           timer: 1200,
         });
-        navigate("/login", { replace: true });
+        navigate("/home", { replace: true });
       }
     });
   };

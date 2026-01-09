@@ -22,10 +22,10 @@ const fmt = (d) =>
 // Function baru untuk format tanggal ke DD/MM/YYYY
 const formatTanggalIndonesia = (dateString) => {
   if (!dateString) return "";
-  
+
   // Parse tanggal dari format YYYY-MM-DD
   const [year, month, day] = dateString.split("-");
-  
+
   // Return format DD/MM/YYYY
   return `${day}/${month}/${year}`;
 };
@@ -33,15 +33,15 @@ const formatTanggalIndonesia = (dateString) => {
 // Function untuk convert kembali ke format YYYY-MM-DD (jika diperlukan)
 const formatTanggalDatabase = (dateString) => {
   if (!dateString) return "";
-  
+
   // Jika sudah format YYYY-MM-DD, return as is
   if (dateString.includes("-") && dateString.split("-")[0].length === 4) {
     return dateString;
   }
-  
+
   // Parse tanggal dari format DD/MM/YYYY
   const [day, month, year] = dateString.split("/");
-  
+
   // Return format YYYY-MM-DD
   return `${year}-${pad(month)}-${pad(day)}`;
 };
@@ -204,7 +204,10 @@ export default function Home({ role }) {
   const navigate = useNavigate();
 
   const PageDetail = (row) => {
-    navigate(`/${role}/buat-surat/${row.id}`, { state: row });
+    const tglEncoded = encodeURIComponent(formatTanggalIndonesia(row.tgl));
+    navigate(`/${role}/buat-surat/${row.id}/${tglEncoded}`, {
+      state: row,
+    });
   };
 
   const PageDetailAdmin = (row) => {
@@ -222,8 +225,8 @@ export default function Home({ role }) {
     <div className="p-4 md:p-6">
       <h1 className="text-xl font-semibold mb-4">
         {role === "koordinator"
-          ? "Data Jumantik Berdasarkan Tanggal | Koordinator"
-          : "Data Jumantik Berdasarkan Tanggal | Admin"}
+          ? "Membuat Data Jumantik | Koordinator"
+          : "Melihat Data Jumantik | Admin"}
       </h1>
 
       {/* === Filter & Tombol (kanan semua) === */}
@@ -288,7 +291,9 @@ export default function Home({ role }) {
                   />
                 </td>
                 <td className="p-3 text-left">{i + 1}</td>
-                <td className="p-3 text-left">{formatTanggalIndonesia(r.tgl)}</td>
+                <td className="p-3 text-left">
+                  {formatTanggalIndonesia(r.tgl)}
+                </td>
                 <td className="p-3 w-[260px]">
                   <div className="flex justify-end gap-2 w-full flex-wrap">
                     <button
