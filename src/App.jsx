@@ -48,7 +48,10 @@ export default function App() {
         >
           <Route index element={<Home role="koordinator" />} />
           <Route path="laporan" element={<LaporanAdmin role="koordinator" />} />
-          <Route path="buat-laporan" element={<LaporanPage role="Petugas" />} />
+          <Route
+            path="buat-laporan"
+            element={<LaporanPage role="koordinator" />}
+          />
         </Route>
 
         <Route
