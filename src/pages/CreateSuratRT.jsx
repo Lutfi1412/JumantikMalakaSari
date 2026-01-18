@@ -608,6 +608,7 @@ export default function CreateSuratRT() {
                       <input
                         type="number"
                         value={detailRow.jumlah.jumantik || ""}
+                        min={0}
                         onChange={(e) =>
                           setDetailRow({
                             ...detailRow,
@@ -626,6 +627,7 @@ export default function CreateSuratRT() {
                       </label>
                       <input
                         type="number"
+                        min={0}
                         value={detailRow.jumlah.melapor || ""}
                         onChange={(e) =>
                           setDetailRow({
@@ -671,6 +673,7 @@ export default function CreateSuratRT() {
                               value={
                                 detailRow.jenis_tatanan[key].dikunjungi || ""
                               }
+                              min={0}
                               onChange={(e) =>
                                 updateJenisTatanan(
                                   key,
