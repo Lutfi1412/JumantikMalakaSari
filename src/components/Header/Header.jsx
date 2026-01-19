@@ -37,6 +37,10 @@ const Header = ({ navOpen, onToggleNav }) => {
           ))}
 
           {/* Tombol Login */}
+
+          <a href="https://bot-malaka-sari.vercel.app/" className="nav-bot">
+            ChatBot
+          </a>
           <a href="/login" className="nav-login">
             Login
           </a>

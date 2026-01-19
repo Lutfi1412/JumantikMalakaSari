@@ -947,6 +947,15 @@ textarea:focus {
     border: none;
     /* background: #19aba6c5 */
   }
+
+      .nav-bot {
+    margin-top: 0.5rem; /* supaya turun di bawah FAQ */
+    width: 100%;
+    text-align: left;
+    padding-left: 0;
+    border: none;
+    /* background: #19aba6c5 */
+  }
 }
 
 /* Utility */
@@ -961,4 +970,13 @@ body.modal-open {
   font-weight: 500;
   color: #ffffff;
   background: #2a7875
+}
+
+.nav-bot {
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #ffffff;
+  background: #3676bb
 }
